@@ -1,15 +1,11 @@
 import * as restify from 'restify';
-import { AnalyticsTrackController } from '../controllers/api/v1/AnalyticsTrackController';
+import { MessageSyncController } from '../controllers/api/v1/MessageSyncController';
 
 function route(api: restify.Server): void {
-  let trackCtrl = new AnalyticsTrackController();
+  let trackCtrl = new MessageSyncController();
 
-  api.post('/track', (req: restify.Request, res: restify.Response) => {
-    trackCtrl.track(req, res);
-  });
-
-  api.get('/api', (req: restify.Request, res: restify.Response) => {
-    res.json(200, { routes: api.router.mounts });
+  api.post('/sync', (req: restify.Request, res: restify.Response) => {
+    trackCtrl.sync(req, res);
   });
 }
 

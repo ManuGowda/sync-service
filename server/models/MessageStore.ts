@@ -1,7 +1,7 @@
 import { Validator } from 'jsonschema';
 import { logger } from '../services/logger';
 import { schema } from '../config/config';
-import { Event } from 'globals';
+import { Message } from 'globals';
 
 /**
  * MessageStore
@@ -9,16 +9,16 @@ import { Event } from 'globals';
 
 export class MessageStore {
 
-  private _pubSubClient: any;
+  private _client: any;
   private _validator: Validator;
 
   constructor(client: any) {
     logger.info("Init: MessageStore Model");
-    this._pubSubClient = client;
+    this._client = client;
     this._validator = new Validator();
   }
 
-  public store(message: Event): Promise<any> {
+  public store(message: Message): Promise<any> {
     try {
       let isValid = this._validator.validate(message, schema);
       let topicName: string;
@@ -27,9 +27,9 @@ export class MessageStore {
       } else {
         topicName = "invalid-sync-service";
       }
-      return this._pubSubClient.producer(message, topicName);
+      return this._client.producer(message, topicName);
     } catch (e) {
-      logger.error("Error while tracking event: ", e);
+      logger.error("Error while tracking message: ", e);
     }
   }
 }

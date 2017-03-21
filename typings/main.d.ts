@@ -1,6 +1,6 @@
 declare module "globals" {
 
-  export interface Event {
+  export interface Message {
     app_name: string;
     app_version: string;
     tab_id: string;
@@ -10,14 +10,7 @@ declare module "globals" {
     ip_addr: string;
     type: string;
   }
-
-  export interface Topic {
-    topic: string;
-    messages: string;
-    partition: number;
-    attributes?: number;
-  }
-
+  
   export interface Config {
     name: string;
     port: number;

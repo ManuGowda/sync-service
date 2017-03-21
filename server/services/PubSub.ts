@@ -1,10 +1,10 @@
 import * as PubSub from 'pubsub-js';
 import { logger } from '../services/logger';
-import { Topic, Event } from 'globals';
+import { Message } from 'globals';
 
 export class PubSubClient {
 
-  public producer(message: Event, topicName: string): Promise<any> {
+  public producer(message: Message, topicName: string): Promise<any> {
 
     return new Promise(function (resolve, reject) {
       try {
@@ -17,7 +17,7 @@ export class PubSubClient {
     });
   }
 
-  public subscriber(message: Event, topicName: string): Promise<any> {
+  public subscriber(message: Message, topicName: string): Promise<any> {
 
     return new Promise(function (resolve, reject) {
       try {

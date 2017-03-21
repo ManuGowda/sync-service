@@ -18,5 +18,5 @@ export let schema = {
   "properties": {
     "message": { "type": "string" }
   },
-  "required": ["app_name"]
+  "required": ["message"]
 };

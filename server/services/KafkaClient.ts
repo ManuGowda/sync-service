@@ -1,6 +1,6 @@
 import * as kafkaNode from 'kafka-node';
 import { logger } from '../services/logger';
-import { Topic, Event } from 'globals';
+import {  Message } from 'globals';
 
 export class KafkaClient {
 
@@ -9,7 +9,7 @@ export class KafkaClient {
 
   constructor() {
 
-    this._client = new kafkaNode.Client('localhost:2181', '');
+    this._client = new kafkaNode.Client('localhost:2181', 'producer');
     this._kafkaProducer = new kafkaNode.Producer(this._client);
 
     this._kafkaProducer.on('ready', (data) => {
@@ -22,9 +22,9 @@ export class KafkaClient {
     logger.info("Init: KafkaClient");
   }
 
-  public producer(event: Event, topicName: string): Promise<any> {
+  public producer(event: Message, topicName: string): Promise<any> {
 
-    let payload: Topic = {
+    let payload = {
       topic: topicName,
       messages: JSON.stringify(event),
       partition: 0

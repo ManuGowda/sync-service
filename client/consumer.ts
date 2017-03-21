@@ -1,11 +1,18 @@
-import * as PubSub from 'pubsub-js';
+import * as kafkaNode from 'kafka-node';
+import { logger } from '../server/services/logger';
 
-let mySubscriber = function (msg, data) {
-    console.log(msg, data);
-};
-setTimeout(function () {
+let HighLevelConsumer = kafkaNode.HighLevelConsumer;
+let Client = kafkaNode.Client;
+let argv = require('optimist').argv;
+let consumerClient = new Client('localhost:2181', 'consumer');
+let topics = [{ topic: "sync-service" }];
+let options = { autoCommit: true, fetchMaxWaitMs: 1000, fetchMaxBytes: 1024 * 1024 };
+let consumer = new HighLevelConsumer(consumerClient, topics, options);
 
+consumer.on('message', function (message) {
+  logger.info(message);
+});
 
-    let message = PubSub.subscribe('sync-service', mySubscriber);
-    console.log("Hogeee", message);
-}, 3000);
+consumer.on('error', function (err) {
+  logger.info('error', err);
+});

@@ -23,7 +23,7 @@ fs.readdirSync(__dirname + '/routes').forEach(function (routeConfig: string) {
   }
 });
 
-api.listen(settings.port, "127.0.0.1" , () => {
+api.listen(settings.port, () => {
   logger.info(`INFO: ${settings.name} is running at ${api.url}`);
   logger.info('%s listening at %s', api.name, api.url);
   console.log(`INFO: ${settings.name} is running at ${api.url}`);

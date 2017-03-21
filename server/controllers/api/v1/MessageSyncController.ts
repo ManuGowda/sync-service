@@ -4,19 +4,18 @@ import * as restify from 'restify';
 import { KafkaClient } from '../../../services/KafkaClient';
 import { PubSubClient } from '../../../services/PubSub';
 
-export class AnalyticsTrackController {
+export class MessageSyncController {
 
   private _analyticsEvent: MessageStore;
 
   constructor() {
-    logger.info("Init: AnalyticsTrackController");
     let pubSubClient = new PubSubClient();
     let kafkaClient = new KafkaClient();
-    //this._analyticsEvent = new MessageStore(pubSubClient);
+
     this._analyticsEvent = new MessageStore(kafkaClient);
   }
 
-  public track(req: restify.Request, res: restify.Response): void {
+  public sync(req: restify.Request, res: restify.Response): void {
     this._analyticsEvent.store(req.body)
       .then((data) => {
         logger.info("Successfully published event");
