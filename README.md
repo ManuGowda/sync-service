@@ -61,3 +61,9 @@ $ node server/app.js
 $ cd sync-service
 $ node client/consumer.js
 ```
+
+### POST JSON data
+
+```sh
+curl -H "Content-Type: application/json" -X POST -d '{"message":"test"}' http://localhost:8083/sync
+```

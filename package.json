@@ -7,17 +7,17 @@
     "start": "node server/app.js"
   },
   "dependencies": {
-    "@types/jsonschema": "0.0.5",
-    "@types/kafka-node": "^0.2.34",
-    "@types/node": "^6.0.53",
-    "@types/pubsub-js": "^1.5.17",
-    "@types/restify": "^2.0.35",
     "jsonschema": "^1.1.1",
     "kafka-node": "^1.0.7",
     "pubsub-js": "^1.5.6",
     "restify": "^4.3.0"
   },
   "devDependencies": {
+    "@types/jsonschema": "0.0.5",
+    "@types/kafka-node": "^0.2.34",
+    "@types/node": "^6.0.53",
+    "@types/pubsub-js": "^1.5.17",
+    "@types/restify": "^2.0.35",
     "@types/chai": "^3.4.34",
     "@types/cucumber": "0.0.33",
     "@types/jquery": "^2.0.33",
