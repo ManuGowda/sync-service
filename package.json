@@ -4,7 +4,7 @@
   "description": "NodeJS REST api service for keeping application in sync",
   "scripts": {
     "gulp": "gulp",
-    "start": "node app/server.js"
+    "start": "node server/app.js"
   },
   "dependencies": {
     "@types/jsonschema": "0.0.5",

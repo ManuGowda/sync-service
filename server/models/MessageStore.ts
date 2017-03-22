@@ -18,7 +18,7 @@ export class MessageStore {
     this._validator = new Validator();
   }
 
-  public store(message: Message): Promise<any> {
+  public save(message: Message): Promise<any> {
     try {
       let isValid = this._validator.validate(message, schema);
       let topicName: string;
